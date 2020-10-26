@@ -10,7 +10,7 @@ Created on Mon Oct 26 16:32:05 2020
 import numpy as np
 import matplotlib.pyplot as plt
 
-window = window_list[0]
+#window = window_list[0]  import window dataset instead of this
 target_count = window['targeted_group1'].value_counts()
 
 target_count = target_count.reset_index()
