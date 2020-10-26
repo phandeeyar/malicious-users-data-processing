@@ -7,7 +7,7 @@ Created on Mon Oct 26 12:47:09 2020
 
 #Wordcloud    
 
-window = window_list[0]
+window = window_list[0] #change this to the window data
 hs_expression_freq = window['hate_speech_item1'].value_counts()
 hs_expression_freq = hs_expression_freq.reset_index()
 
