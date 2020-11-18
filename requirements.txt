@@ -1,0 +1,10 @@
+#Requirements
+
+pandas
+numpy
+os
+glob
+pickle
+networkx
+matplotlib.pyplot
+wordcloud
