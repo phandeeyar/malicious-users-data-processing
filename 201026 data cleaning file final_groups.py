@@ -186,19 +186,9 @@ df = add_number_of_posts(df, outputfilepath)
 ## Section 10: Add election topics
 
 
-electiontopics = pd.read_excel(r'C:\Users\Anna\Documents\Consulting opportunities\Phandeeyar\Project files\Data\hate speech lexicon\Lexicon.xlsx', sheet_name='topic')
-electiontopics_outputfilepath = r'C:\Users\Anna\Documents\Consulting opportunities\Phandeeyar\Project files\Data\cleaned data\electiontopickeywords.xlsx'
+electiontopics = pd.read_excel(r'C:\Users\Anna\Documents\Consulting opportunities\Phandeeyar\Project files\Data\cleaned data\electiontopickeywords.xlsx')
 
-def add_election_topics_from_keywords(df, electiontopics, electiontopics_outputfilepath, outputfilepath):
-    electiontopics = electiontopics[(electiontopics['party/elections'].notna())|(electiontopics['covid'].notna())]
-    electiontopics = electiontopics.drop(columns=['religion', 'ethnic', 'armed conflict', 'activism'])
-    electiontopics['election_topic'] = True
-    electiontopics['party/elections'] = electiontopics['party/elections'].replace({'x':True, np.nan:False})
-    electiontopics['covid'] = electiontopics['covid'].replace({'x':True, np.nan:False})
-    electiontopics = electiontopics.rename(columns={'topic':'keyword'})
-    electiontopics = electiontopics.reset_index(drop=True)
-    electiontopics.to_excel(electiontopics_outputfilepath)
-    #df['hate_speech'] = df['comment'].str.contains('|'.join(lexiconall['label'].values), na=False)
+def add_election_topics_from_keywords(df, electiontopics, outputfilepath):
     df['hate_speech'] = df['comment'].str.contains('|'.join(lexicon['label'].values), na=False)
     df['election_topic3'] = np.nan
     df['election_topic2'] = df['comment'].str.contains('|'.join(electiontopics['keyword'].values), na=False)
@@ -208,7 +198,7 @@ def add_election_topics_from_keywords(df, electiontopics, electiontopics_outputf
    
     return df
 
-df = add_election_topics_from_keywords(df, electiontopics, electiontopics_outputfilepath, outputfilepath)
+df = add_election_topics_from_keywords(df, electiontopics, outputfilepath)
 
 df['overperforming_score'] = df['overperforming_score'].astype(str).replace(',','')
 df['overperforming_score'] = df['overperforming_score'].str.replace(",","")
